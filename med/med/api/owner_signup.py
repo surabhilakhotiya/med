@@ -8,7 +8,7 @@ from frappe.utils import (cint, flt, has_gravatar, escape_html, format_datetime,
 
 
 @frappe.whitelist(allow_guest=True)
-def owner_sign_up(email, full_name, mobile_no, gender, password, role_profile, type, mod_pro):
+def owner_sign_up(email, full_name, mobile_no, gender, password, role_profile, mod_pro):
     user = frappe.get_doc({
         "doctype": "User",
         "email": email,
@@ -18,7 +18,6 @@ def owner_sign_up(email, full_name, mobile_no, gender, password, role_profile, t
         "new_password": password,
         "enabled": 1,
         "role_profile_name": role_profile,
-        "user_type": type,
         "module_profile": mod_pro
     })
     user.flags.ignore_permissions = True
