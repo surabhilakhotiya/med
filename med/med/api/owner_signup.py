@@ -17,12 +17,12 @@ def owner_sign_up(email, full_name, mobile_no, gender, password):
         "gender": gender,
         "new_password": password,
         "enabled": 1,
-        "user_type": "Website User"
+        "user_type": "System User"
     })
     user.flags.ignore_permissions = True
     user.flags.ignore_password_policy = True
     user.insert()
-    return "User Registered Successfully"
+    return "User Registered Successfully..!!"
 
     # # set default signup role as per Portal Settings
     # default_role = frappe.db.get_value("Portal Settings", None, "default_role")
