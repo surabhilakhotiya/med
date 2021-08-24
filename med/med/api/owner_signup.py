@@ -8,7 +8,7 @@ from frappe.utils import (cint, flt, has_gravatar, escape_html, format_datetime,
 
 
 @frappe.whitelist(allow_guest=True)
-def owner_sign_up(email, full_name, mobile_no, gender, password, role_profile, mod_pro):
+def owner_sign_up(email,full_name,mobile_no,gender,password,role_profile,mod_pro,bs_name,bs_addr,lat,long,b_info,bank,ac,branch,ifsc,mon,tue,wed,thu,fri,sat,sun,kwh,amt):
     user = frappe.get_doc({
         "doctype": "User",
         "email": email,
@@ -18,25 +18,30 @@ def owner_sign_up(email, full_name, mobile_no, gender, password, role_profile, m
         "new_password": password,
         "enabled": 1,
         "role_profile_name": role_profile,
-        "module_profile": mod_pro
+        "module_profile": mod_pro,
+        "owner_business_name":bs_name,
+        "business_address":bs_addr,
+        "lattitude":lat,
+        "longitude":long,
+        "business_information":b_info,
+        "bank_name":bank,
+        "account_number":ac,
+        "branch":branch,
+        "ifsc_code":ifsc,
+        "monday":mon,
+        "tuesday":tue,
+        "wednesday":wed,
+        "thursday":thu,
+        "friday":fri,
+        "saturday":sat,
+        "sunday":sun,
+        "kwh":kwh,
+        "amount":amt
     })
     user.flags.ignore_permissions = True
     user.flags.ignore_password_policy = True
     user.insert()
     return "Sign-Up Successfully"
-
-    # # set default signup role as per Portal Settings
-    # default_role = frappe.db.get_value("Portal Settings", None, "default_role")
-    # if default_role:
-    # 	user.add_roles(default_role)
-
-    # if redirect_to:
-    # 	frappe.cache().hset('redirect_after_login', user.name, redirect_to)
-
-    # if user.flags.email_sent:
-    # 	return 1, _("Please check your email for verification")
-    # else:
-    # 	return 2, _("Please ask your administrator to verify your sign-up")
 
 # API For This File
 # http://0.0.0.0:8005/api/method/med.med.api.owner_signup.owner_sign_up
