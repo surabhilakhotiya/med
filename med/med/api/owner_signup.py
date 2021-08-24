@@ -8,7 +8,7 @@ from frappe.utils import (cint, flt, has_gravatar, escape_html, format_datetime,
 
 
 @frappe.whitelist(allow_guest=True)
-def owner_sign_up(email,full_name,mobile_no,gender,password,role_profile,mod_pro,bs_name,bs_addr,lat,long,b_info,bank,ac,branch,ifsc,mon,tue,wed,thu,fri,sat,sun,kwh,amt):
+def owner_sign_up(email,full_name,mobile_no,gender,password,role_profile,mod_pro,bs_name,bs_addr,lat,long,b_info,bank,ac,branch,ifsc,mon,tue,wed,thu,fri,sat,sun,kwh,amount):
     user = frappe.get_doc({
         "doctype": "User",
         "email": email,
@@ -36,7 +36,7 @@ def owner_sign_up(email,full_name,mobile_no,gender,password,role_profile,mod_pro
         "saturday":sat,
         "sunday":sun,
         "kwh":kwh,
-        "amount":amt
+        "amount":amount
     })
     user.flags.ignore_permissions = True
     user.flags.ignore_password_policy = True
